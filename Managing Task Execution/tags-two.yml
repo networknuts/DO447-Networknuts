@@ -1,0 +1,34 @@
+---
+- name: config httpd
+  hosts: all
+  order: sorted
+  become: true
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+      tags:
+        - aryan_install
+
+    - name: service httpd start and enable
+      service:
+        name: httpd
+        state: started
+        enabled: true
+      tags:
+        - apache_config
+
+    - name: index.html file creation
+      copy:
+        content: "AWS APACHE TEST"
+        dest: /var/www/html/index.html
+      tags:
+        - index_html
+
+    - name: test.html
+      copy:
+        content: "test html file"
+        dest: /var/www/html/index.html
+      tags:
+        - always

@@ -1,0 +1,41 @@
+---
+- name: flush handlers example
+  hosts: all
+  tasks:
+          - block:
+                  - name: create file
+                    file:
+                            path: /tmp/file.txt
+                            state: touch
+                    notify: file_msg
+
+                  - name: create dir
+                    file:
+                            path: /tmp/awsdir
+                            state: directory
+                    notify: dir_msg
+
+            when: inventory_hostname in groups['aws']
+
+          - name: flush handlers
+            meta: flush_handlers
+
+          - name: copy /etc/hosts
+            copy:
+                    src: /etc/hosts
+                    dest: /tmp/hostscontroller
+            become: true
+            notify: hosts_copied
+
+  handlers:
+         - name: file_msg
+           debug:
+                   msg: 'file created'
+
+         - name: dir_msg
+           debug:
+                   msg: 'dir created'
+
+         - name: hosts_copied
+           debug:
+                   msg: 'hosts file copied'

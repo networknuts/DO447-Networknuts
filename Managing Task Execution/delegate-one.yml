@@ -1,0 +1,16 @@
+---
+- name: install and delegate
+  hosts: all
+  tasks:
+          - name: install httpd
+            yum:
+                    name: httpd
+                    state: present
+            become: true
+            when: inventory_hostname in groups['aws']
+
+          - name: create file
+            copy:
+                    content: "delegation"
+                    dest: /tmp/delegate.txt
+            delegate_to: 10.0.0.8

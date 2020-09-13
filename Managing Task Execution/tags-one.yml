@@ -1,0 +1,29 @@
+---
+- name: play to install packages
+  hosts: all
+  become: true
+  tags:
+          - install
+  tasks:
+          - name: install packages
+            yum:
+                    name:
+                            - httpd
+                            - firewalld
+                            - openssh
+                    state: present
+
+- name: play to start services
+  hosts: all
+  become: true
+  tags:
+          - service
+  tasks:
+          - name: start services
+            service:
+                    name: "{{ item }}"
+                    state: started
+            loop:
+                    - httpd
+                    - firewalld
+                    - sshd

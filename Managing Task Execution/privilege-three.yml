@@ -1,0 +1,23 @@
+---
+- name: escalation in blocks
+  hosts: all
+  tasks:
+          - block:
+                  - name: install httpd
+                    yum:
+                            name: httpd
+                            state: present
+
+                  - name: start and enable httpd
+                    service:
+                            name: httpd
+                            state: started
+                            enabled: true
+            become: true
+
+          - name: test connection
+            uri:
+                    url: http://{{ ansible_host }}
+                    return_content: yes
+            register: webpage
+            failed_when: webpage.status != 200

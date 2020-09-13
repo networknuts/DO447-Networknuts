@@ -1,0 +1,16 @@
+---
+- name: run role as a task
+  hosts: all
+  tasks:
+          - name: task one
+            debug:
+                    msg: 'task one'
+
+          - name: include role
+            include_role:
+                    name: apache
+            become: true
+
+          - name: task two
+            debug:
+                    msg: 'task two'

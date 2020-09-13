@@ -1,0 +1,14 @@
+---
+- name: two tasks, one with escalation
+  hosts: all
+  tasks:
+          - name: install perl
+            yum:
+                    name: perl
+                    state: present
+            become: true
+
+          - name: create temp file
+            copy:
+                    content: 'temp content'
+                    dest: /tmp/tempfile.txt

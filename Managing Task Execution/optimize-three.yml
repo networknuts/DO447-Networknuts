@@ -1,0 +1,14 @@
+---
+- name: install multiple packages
+  hosts: all
+  become: true
+  tasks:
+    - name: install multi packages
+      yum:
+        name:
+          - httpd
+          - openssh
+          - cups
+        state: present
+
+#yum install httpd openssh cups

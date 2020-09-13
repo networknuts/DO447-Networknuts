@@ -1,0 +1,17 @@
+---
+- name: install multiple packages
+  hosts: all
+  become: true
+  tasks:
+    - name: install multi packages
+      yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - httpd
+        - openssh
+        - cups
+
+#yum install httpd
+#yum install openssh
+#yum install cups

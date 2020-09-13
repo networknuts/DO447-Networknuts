@@ -1,0 +1,39 @@
+---
+- name: role execution order three
+  hosts: all
+  pre_tasks:
+          - name: stop firewalld
+            service:
+                    name: firewalld
+                    state: stopped
+
+  roles:
+          - name: apache
+
+  tasks:
+          - name: restart memcached
+            service:
+                    name: memcached
+                    state: restarted
+            notify: memcache
+
+  post_tasks:
+          - name: start firewalld
+            service:
+                    name: firewalld
+                    state: started
+                    enabled: true
+
+  handlers:
+          - name: memcache
+            debug:
+                    msg: 'memcached was restarted'
+
+#ORDER OF EXECUTION:
+#pre_tasks
+#handlers of pre_tasks
+#roles
+#tasks
+#handlers of roles and tasks
+#post_tasks
+#handlers of post_tasks

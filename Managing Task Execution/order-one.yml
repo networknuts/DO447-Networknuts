@@ -1,0 +1,14 @@
+---
+- name: Ensure Apache is deployed
+  hosts: all
+  become: true
+  tasks:
+          - name: open firewall for apache
+            firewalld:
+                    service: http
+                    state: enabled
+                    immediate: true
+                    permanent: true
+
+  roles:
+          - role: apache

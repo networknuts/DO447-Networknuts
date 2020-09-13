@@ -1,0 +1,20 @@
+---
+- name: use privilege escalation
+  hosts: all
+  become: true
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: show user for this play
+      debug:
+        var: ansible_user_id
+
+- name: do not use privilege escalation
+  hosts: all
+  tasks:
+          - name: show user for this play
+            debug:
+              var: ansible_user_id

@@ -1,0 +1,11 @@
+---
+- name: control hosts execution
+  hosts: all
+  order: inventory
+  tasks:
+          - name: create file
+            file:
+                    path: /tmp/orderfile
+                    state: touch
+
+# order = inventory(default), reverse_inventory, sorted, reverse_sorted, random

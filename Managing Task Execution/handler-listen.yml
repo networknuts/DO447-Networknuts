@@ -1,0 +1,19 @@
+---
+- name: listen to handlers
+  hosts: all
+  tasks:
+          - name: create file
+            file:
+                    path: /tmp/handlerfile.txt
+                    state: touch
+            notify: file_handler
+
+  handlers:
+          - name: listen to notify
+            debug:
+                    msg: 'file created'
+            listen: file_handler
+
+          - name: file_handler
+            debug:
+                    msg: 'second message'
