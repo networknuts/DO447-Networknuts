@@ -1,0 +1,11 @@
+---
+- name: mathematical integer
+  hosts: all
+  tasks:
+          - name: print current time + 1
+            debug:
+                    msg: "{{ ( ansible_facts['date_time']['hour'] | int ) + 1 }}"
+
+          - name: print RAM + 1000
+            debug:
+                    msg: "{{ ( ansible_facts['memtotal_mb'] | int ) + 1000 }}"

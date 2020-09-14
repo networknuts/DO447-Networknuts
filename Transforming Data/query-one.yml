@@ -1,0 +1,20 @@
+---
+- name: lookup data in playbook
+  hosts: all
+  become: true
+  gather_facts: false
+  vars:
+          mydata: "{{ query('file','/etc/passwd','/etc/issue') }}"
+  tasks:
+          - name: process data
+            copy:
+                    content: "{{ mydata }}"
+                    dest: /tmp/lookupdata3.txt
+
+          - name: cat /tmp/lookupdata2.txt
+            command: 'cat /tmp/lookupdata3.txt'
+            register: cat
+
+          - name: debugging command
+            debug:
+                    var: cat

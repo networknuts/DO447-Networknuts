@@ -1,0 +1,8 @@
+---
+- name: lookup env var
+  hosts: all
+  gather_facts: false
+  tasks:
+          - name: debug env var
+            debug:
+                    msg: "{{ lookup('env','MYPASSWORD') }}"

@@ -1,0 +1,10 @@
+---
+- name: lookup template data
+  hosts: all
+  gather_facts: false
+  vars:
+          my_name: 'Aryan'
+  tasks:
+          - name: process template data
+            debug:
+                    msg: "{{ lookup('template','temp-one.j2') }}"

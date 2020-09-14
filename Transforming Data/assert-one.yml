@@ -1,0 +1,13 @@
+---
+- name: assert example one
+  hosts: all
+  vars:
+          - mylist:
+                  - httpd
+                  - firewalld
+                  - openssh
+  tasks:
+          - name: check mylist value one
+            assert:
+                    that:
+                            - mylist[0] == 'httpd'

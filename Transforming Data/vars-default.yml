@@ -1,0 +1,29 @@
+---
+- name: create user with group
+  hosts: all
+  become: true
+  vars:
+          - mygroups: {'north':'ind','west':'usa','south':'aus'}
+  tasks:
+
+          - name: create groups
+            group:
+                    name: "{{ item }}"
+                    state: present
+            loop:
+                    - ind
+                    - usa
+                    - aus
+                    - europe
+
+          - name: create user one
+            user:
+                    name: jeff
+                    groups: "{{ mygroups['west'] }}"
+                    state: present
+
+          - name: create user two
+            user:
+                    name: joff
+                    groups: "{{ mygroups['east'] | default('europe') }}"
+                    state: present

@@ -1,0 +1,9 @@
+---
+- name: replace name
+  hosts: all
+  vars_files:
+          - list.yml
+  tasks:
+          - name: debug names
+            debug:
+                    msg: "{{ users | replace('a','z') }}"

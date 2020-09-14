@@ -1,0 +1,19 @@
+---
+- name: convert between json and yml
+  hosts: all
+  gather_facts: false
+  vars:
+          myhosts:
+                  - name: bastion
+                    ip:
+                            - 192.168.0.1
+                            - 192.168.0.2
+          hosts_json: '[{"name": "bastion","ip": ["192.168.0.1","192.168.0.2"]}]'
+  tasks:
+           - name: debugging
+             debug:
+                     var: myhosts
+
+           - name: debugging two
+             debug:
+                     var: hosts_json

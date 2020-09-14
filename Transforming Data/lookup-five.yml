@@ -1,0 +1,20 @@
+---
+- name: lookup template data
+  hosts: all
+  tasks:
+          - name: process template data
+            debug:
+                    msg: "{{ lookup('template','temp-two.j2') }}"
+
+          - name: process data in file
+            copy:
+                    content: "{{ lookup('template','temp-two.j2') }}"
+                    dest: /tmp/lookuptwo.txt
+
+          - name: read lookuptwo.txt
+            command: 'cat /tmp/lookuptwo.txt'
+            register: cat
+
+          - name: debug cat
+            debug:
+                    var: cat

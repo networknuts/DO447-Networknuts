@@ -1,0 +1,21 @@
+---
+- name: add authorized keys
+  hosts: all
+  gather_facts: false
+  become: true
+  vars:
+          users:
+                  - ava
+                  - avery
+  tasks:
+          - name: create users
+            user:
+                    name: "{{ item }}"
+                    state: present
+            loop: "{{ users }}"
+
+          - name: add keys
+            authorized_key:
+                    user: "{{ item }}"
+                    key: "{{ lookup('file', item + '.key.pub') }}"
+            loop: "{{ users }}"

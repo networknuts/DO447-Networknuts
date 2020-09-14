@@ -1,0 +1,18 @@
+---
+- name: create file
+  hosts: all
+  vars:
+          - mydata: 'some text here'
+  tasks:
+          - name: create file with content
+            copy:
+                    content: "{{ mydata | capitalize }}"
+                    dest: /tmp/mydata.txt
+
+          - name: read file
+            command: 'cat /tmp/mydata.txt'
+            register: mydata
+
+          - name: display file data
+            debug:
+                    var: mydata

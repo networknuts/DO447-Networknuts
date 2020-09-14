@@ -1,0 +1,10 @@
+---
+- name: assert example two
+  hosts: all
+  vars:
+          - mydict: {'webpkg':'httpd','conn':'openssh','security':'firewalld'}
+  tasks:
+          - name: assert dict
+            assert:
+                    that:
+                            - mydict['webpkg'] == 'httpd'
