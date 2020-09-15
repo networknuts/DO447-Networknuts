@@ -1,0 +1,13 @@
+---
+- name: collect only network facts
+  hosts: all
+  tasks:
+          - name: gathering only network facts
+            setup:
+                    gather_subset:
+                            - network
+            register: network
+
+          - name: debug
+            debug:
+                    var: network

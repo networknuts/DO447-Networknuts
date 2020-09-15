@@ -1,0 +1,10 @@
+---
+- name: glob example three
+  hosts: all
+  gather_facts: false
+  tasks:
+          - name: multiple glob with loop
+            debug:
+                    msg: "{{ item }}"
+            with_fileglob:
+                    - "~/.bash*"

@@ -1,0 +1,12 @@
+---
+- name: lookup dns information
+  hosts: localhost
+  gather_facts: false
+  tasks:
+          - name: find A record
+            debug:
+                    msg: "{{ item }}"
+            loop:
+                    - "{{ lookup('dig', 'example.com') }}"
+                    - "{{ lookup('dig', 'example.com', 'qtype=MX') }}"
+                    - "{{ lookup('dig', 'example.com/MX') }}"

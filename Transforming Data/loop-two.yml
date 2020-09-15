@@ -1,0 +1,20 @@
+---
+- name: loop and dicts
+  hosts: all
+  become: true
+  gather_facts: false
+  vars:
+          users:
+                  demo1:
+                          comment: 'user one'
+                  demo2:
+                          comment: 'user two'
+                  demo3:
+                          comment: 'user three'
+  tasks:
+          - name: iterate over a dict with loop
+            user:
+                    name: "{{ item.key }}"
+                    comment: "{{ item.value.comment }}"
+                    state: present
+            with_dict: "{{ users }}"

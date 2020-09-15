@@ -1,0 +1,25 @@
+---
+- name: using loop with multiple lists
+  hosts: all
+  gather_facts: false
+  vars:
+          list1:
+                  - itemone
+                  - itemtwo
+                  - itemthree
+          list2:
+                  - itemfour
+                  - itemfive
+                  - itemsix
+          list3:
+                  - itemseven
+                  - itemeight
+                  - itemnine
+  tasks:
+          - name: debug multiple lists
+            debug:
+                    msg: "{{ item }}"
+            with_items:
+                    - "{{ list1 }}"
+                    - "{{ list2 }}"
+                    - "{{ list3 }}"

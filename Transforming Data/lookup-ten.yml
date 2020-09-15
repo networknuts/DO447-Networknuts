@@ -1,0 +1,17 @@
+---
+- name: get content from url
+  hosts: all
+  gather_facts: false
+  tasks:
+          - name: get content into a file
+            copy:
+                    content: "{{ lookup('url', 'https://example.com') }}"
+                    dest: /tmp/myfile3.txt
+
+          - name: read myfile3.txt
+            command: 'cat /tmp/myfile3.txt'
+            register: cat
+
+          - name: debug cat
+            debug:
+                    var: cat

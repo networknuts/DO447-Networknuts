@@ -1,0 +1,8 @@
+---
+- name: lookup file which does not exist
+  hosts: all
+  gather_facts: false
+  tasks:
+          - name: debug
+            debug:
+                    msg: "{{ lookup('file', 'myfile4.txt', errors='warn') }}"

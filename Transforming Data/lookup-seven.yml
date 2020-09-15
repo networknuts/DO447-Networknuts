@@ -1,0 +1,8 @@
+---
+- name: lookup using query one
+  hosts: all
+  gather_facts: false
+  tasks:
+          - name: read output in raw format
+            debug:
+                    msg: "{{ query('pipe','ls /tmp') }}"

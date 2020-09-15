@@ -1,0 +1,11 @@
+---
+- name: lookup specific data in a file
+  hosts: all
+  gather_facts: false
+  tasks:
+          - name: debug data
+            debug:
+                    msg: "{{ item[0] }}"
+            loop:
+                    - "{{ query('lines', 'cat files/myfile.txt') }}"
+                    -  "{{ query('lines', 'cat files/myfile2.txt') }}"

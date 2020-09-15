@@ -1,0 +1,17 @@
+---
+- name: using the ipaddr filter
+  hosts: localhost
+  vars:
+          my_network: 54.159.104.2
+  tasks:
+          - name: find selected information
+            debug:
+                    msg: "{{ item }}"
+            loop:
+                    - "Netmask: {{ my_network | ipaddr('netmask') }}"
+                    - "Net: {{ my_network | ipaddr('net') }}"
+                    - "Host: {{ my_network | ipaddr('host') }}"
+                    - "Prefix: {{ my_network | ipaddr('prefix') }}"
+                    - "Network: {{ my_network | ipaddr('network') }}"
+                    - "Size: {{ my_network | ipaddr('size') }}"
+                    - "Subnet: {{ my_network | ipaddr('subnet') }}"
