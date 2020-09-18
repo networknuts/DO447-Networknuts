@@ -1,0 +1,20 @@
+---
+- name: get system information
+  hosts: all
+  tasks:
+          - name: get system info
+            command: 'uname -a'
+            register: server
+
+          - name: display info
+            debug:
+                    var: server
+
+          - name: get localhost info
+            command: 'uname -a'
+            register: self
+            delegate_to: localhost
+
+          - name: display localhost info
+            debug:
+                    var: self
