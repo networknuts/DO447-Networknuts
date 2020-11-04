@@ -1,0 +1,7 @@
+---
+- name: display facts
+  hosts: all
+  gather_facts: true
+  tasks:
+   debug:
+     msg: "OS: {{ ansible_facts['distribution'] }}"
