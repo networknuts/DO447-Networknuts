@@ -1,0 +1,8 @@
+---
+- name: gather facts
+  hosts: all
+  gather_facts: true
+  tasks:
+   - name: gather data
+     debug:
+      msg: "gathering facts"
