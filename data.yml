@@ -3,5 +3,6 @@
   hosts: all
   gather_facts: false
   tasks:
-   debug:
-     msg: "OS: {{ ansible_facts['distribution'] }}"
+   - name: debug OS
+     debug:
+       msg: "OS: {{ ansible_facts['distribution'] }}"
