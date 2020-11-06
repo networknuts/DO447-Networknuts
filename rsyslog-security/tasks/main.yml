@@ -1,0 +1,8 @@
+---
+- name: run server tasks
+  include_tasks: server_tasks.yml
+  when: inventory_hostname in groups['rsyslog_server'] and ansible_distribution == 'RedHat'
+
+- name: run client tasks
+  include_tasks: client_tasks.yml
+  when: inventory_hostname in groups['rsyslog_client'] and ansible_distribution == 'RedHat'

@@ -1,0 +1,8 @@
+---
+- name: execute rsyslog security role
+  hosts: all
+  become: true
+  #vars:
+  #  central_server_ip: 192.168.0.100
+  roles:
+    - rsyslog-security

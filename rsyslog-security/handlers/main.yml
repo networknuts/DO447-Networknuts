@@ -1,0 +1,12 @@
+---
+- name: restart rsyslog server
+  systemd:
+    name: rsyslog
+    state: restarted
+    enabled: true
+
+- name: restart rsyslog client
+  systemd:
+    name: rsyslog
+    state: restarted
+    enabled: true

@@ -1,0 +1,14 @@
+---
+- name: configure rsyslog client
+  lineinfile:
+    path: /etc/rsyslog.conf
+    line: "*.* @@{{ central_server_ip }}:514"
+  notify:
+    - restart rsyslog client
+
+- name: allow rsyslog through firewalld
+  firewalld:
+    service: rsyslog
+    state: enabled
+    permanent: true
+    immediate: true

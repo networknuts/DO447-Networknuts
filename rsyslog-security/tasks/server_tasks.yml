@@ -1,0 +1,20 @@
+---
+- name: configure rsyslog centralized server
+  lineinfile:
+    path: /etc/rsyslog.conf
+    regexp: "{{ item.old }}"
+    line: "{{ item.new }}"
+  loop:
+    - new: "module(load="imtcp") # needs to be done just once"
+      old: "#module(load="imtcp") # needs to be done just once"
+    - new: "input(type="imtcp" port="514")"
+      old: "#input(type="imtcp" port="514")"
+  notify:
+    - restart rsyslog server 
+
+- name: allow rsyslog through firewalld
+  firewalld:
+    service: rsyslog
+    state: enabled
+    permanent: true
+    immediate: true

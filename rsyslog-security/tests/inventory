@@ -1,0 +1,6 @@
+[rsyslog_server]
+192.168.0.100
+
+[rsyslog_client]
+192.168.0.1
+192.168.0.2
