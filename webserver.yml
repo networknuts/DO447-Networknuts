@@ -1,0 +1,20 @@
+---
+- name: create and configure webserver
+  hosts: all
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: latest
+        
+    - name: copy index.html file
+      copy:
+        content: "<h1>webserver using ansible tower</h1>"
+        dest: /var/www/html/index.html
+        
+    - name: start service
+      systemd:
+        name: httpd
+        state: started
+        enabled: true
+        
