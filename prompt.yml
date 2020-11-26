@@ -1,0 +1,12 @@
+---
+- name: ask for package to install
+  hosts: all
+  become: true
+  vars:
+    pkg_name: httpd
+  tasks:
+    - name: install {{ pkg_name }} package
+      yum:
+        name: "{{ pkg_name }}"
+        state: latest
+        
