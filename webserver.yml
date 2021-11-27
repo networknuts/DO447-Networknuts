@@ -9,7 +9,7 @@
         
     - name: copy index.html file
       copy:
-        content: "<h1>webserver using ansible tower<br>updated<br>workflow done</h1>"
+        content: "<h1>webserver using ansible tower<br>updated<br></h1>"
         dest: /var/www/html/index.html
         
     - name: start service
