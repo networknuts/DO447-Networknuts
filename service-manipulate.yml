@@ -7,3 +7,9 @@
      service:
       name: "{{ svc_name }}"
       state: stopped
+
+   - name: create user and assign password
+     user:
+      name: "{{ user_name }}"
+      password: "{{ user_pass | password_hash('sha512') }}"
+      state: present
