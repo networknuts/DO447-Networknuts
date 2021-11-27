@@ -1,6 +1,7 @@
 ---
 - name: creating webserver content using a jinja2
   hosts: all
+  gather_facts: false
   tasks:
    - name: deploy index.html.j2 to /var/www/html/index.html
      template:
