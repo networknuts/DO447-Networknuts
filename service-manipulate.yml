@@ -1,0 +1,9 @@
+---
+- name: manipulating service state
+  hosts: all
+  become: true
+  tasks:
+   - name: ensure {{ svc_name }} is stopped
+     service:
+      name: "{{ svc_name }}"
+      state: stopped
