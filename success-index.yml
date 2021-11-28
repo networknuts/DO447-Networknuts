@@ -1,0 +1,11 @@
+---
+- name: update index.html file
+  hosts: all
+  become: true
+  tasks:
+   - name: updating index.html with new content
+     copy:
+      content: "hello world"
+      dest: /var/www/html/index.html
+     register: httpd_output
+     failed_when: "hello world" not in httpd_output.content
