@@ -8,4 +8,4 @@
       content: "hello world"
       dest: /var/www/html/index.html
      register: httpd_output
-     failed_when: "hello world" not in httpd_output.content
+     failed_when: '"hello world" not in httpd_output.content'
