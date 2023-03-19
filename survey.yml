@@ -1,0 +1,14 @@
+---
+- name: working with ansible survey
+  hosts: all
+  become: true
+  tasks:
+    - name: create user {{ user_name }}
+      ansible.builtin.user:
+        name: "{{ user_name }}"
+        state: "{{ user_state }}"
+        
+    - name: change service status of {{ service_name }}
+      ansible.builtin.service:
+        name: "{{ service_name }}"
+        state: "{{ service_state }}"
