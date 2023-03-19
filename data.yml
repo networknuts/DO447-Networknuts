@@ -5,4 +5,8 @@
   tasks:
    - name: debug OS
      debug:
-       msg: "OS: {{ ansible_facts['distribution'] }}"
+       msg: "{{ item }}"
+     loop:
+        - "OS: {{ ansible_facts['distribution'] }}"
+        - "RAM: {{ ansible_facts['memtotal_mb'] }}"
+        - "BIOS Version: {{ ansible_facts['bios_version'] }}"
